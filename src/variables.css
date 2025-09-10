@@ -1,0 +1,22 @@
+:root {
+  /* 배경 그라디언트 */
+  --bg-gradient-start: #6b73ff;
+  --bg-gradient-end: #000dff;
+
+  /* 텍스트 색상 */
+  --text-title: #333;
+  --text-subtitle: #666;
+
+  /* 버튼 색상 */
+  --btn-login-bg: #6b73ff;
+  --btn-login-bg-hover: #4e57d6;
+  --btn-login-text: #fff;
+
+  --btn-signup-bg: #f1f1f1;
+  --btn-signup-bg-hover: #e0e0e0;
+  --btn-signup-text: #333;
+
+  /* 입력 필드 포커스 */
+  --input-focus-border: #6b73ff;
+  --input-focus-shadow: rgba(107, 115, 255, 0.5);
+}
