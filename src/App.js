@@ -5,6 +5,7 @@ import SignUp from "./Login/SignUp";
 import Home from "./Page/Home";
 import PartnerPage from "./Page/PartnerPage";
 import MyPage from "./Page/MyPage"
+import ChangePassword from "./ChangePassword";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/partners" element={<PartnerPage />} />
         <Route path="/mypage" element={<MyPage/>} />
+        <Route path="/password-change" element={<ChangePassword/>} />
       </Routes>
     </Router>
   );

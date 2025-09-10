@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import api from "./Api/api"; // api.js에서 엑세스 토큰이 포함된 axios 인스턴스
 
+const handleSubmmit = async () => {
+
+  }
 function TodayMission() {
   const [mission, setMission] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,9 +41,11 @@ function TodayMission() {
       <h2>오늘의 미션</h2>
       {mission ? (
         <div>
-          <p><strong>ID:</strong> {mission.missionId}</p>
           <p><strong>제목:</strong> {mission.title}</p>
           <p><strong>설명:</strong> {mission.description}</p>
+          <button type="submit" className="signup-btn" onClick={handleSubmmit(mission.missionId)}>
+            회원가입
+          </button>
         </div>
       ) : (
         <p>오늘의 미션이 없습니다.</p>
