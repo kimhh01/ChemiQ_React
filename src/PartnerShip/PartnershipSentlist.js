@@ -27,7 +27,7 @@ function PartnershipSentlist() {
     fetchPartnerships();
 
     // 실시간 상태 변경 체크 (옵션)
-    const interval = setInterval(fetchPartnerships, 5000); // 5초마다 갱신
+    const interval = setInterval(fetchPartnerships, 60000); // 1분마다 갱신
     return () => clearInterval(interval);
   }, []);
 

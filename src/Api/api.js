@@ -30,15 +30,34 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        // Refresh Token으로 새로운 Access Token 요청
-        const res = await axios.post(api.defaults.baseURL+'reissue', null, {
-          withCredentials: true, // refresh token이 쿠키에 저장된 경우 필요
-        });
+        // Refresh Token 꺼내오기 (localStorage에서)
+        const refreshToken = localStorage.getItem("refreshToken");
+        if (!refreshToken) {
+          throw new Error("리프레시 토큰이 없습니다. 다시 로그인해야 합니다.");
+        }
 
-        const newAccessToken = res.data.accessToken;
+        // Refresh Token으로 새로운 Access Token + Refresh Token 요청
+        const res = await axios.post(
+          api.defaults.baseURL + "/reissue",
+          { refreshToken }, // 바디에 refreshToken 포함
+          { withCredentials: true }
+        );
+
+        // Access Token은 응답 헤더에서 가져오기
+        const accessHeader = res.headers["authorization"]; // 보통 소문자
+        if (!accessHeader) {
+          throw new Error("Authorization 헤더가 없습니다.");
+        }
+        const newAccessToken = accessHeader.replace("Bearer ", "");
+
+        // Refresh Token은 응답 body에서 가져오기
+        const newRefreshToken = res.data.newRefreshToken;
 
         // 새 토큰 저장
         localStorage.setItem("accessToken", newAccessToken);
+        if (newRefreshToken) {
+          localStorage.setItem("refreshToken", newRefreshToken);
+        }
 
         // 원래 요청에 새로운 토큰 넣고 재요청
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
@@ -46,7 +65,8 @@ api.interceptors.response.use(
       } catch (refreshError) {
         console.error("리프레시 토큰도 만료됨 → 로그아웃 필요");
         localStorage.removeItem("accessToken");
-        window.location.href = "/login"; // 로그인 페이지로 이동
+        localStorage.removeItem("refreshToken");
+        // window.location.href = "/"; // 로그인 페이지로 이동
         return Promise.reject(refreshError);
       }
     }

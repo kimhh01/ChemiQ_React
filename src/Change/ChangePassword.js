@@ -1,6 +1,6 @@
 // PasswordChange.js
 import React, { useState } from "react";
-import api from "./Api/api"; // api.js에서 만든 axios 인스턴스
+import api from "../Api/api"; // api.js에서 만든 axios 인스턴스
 
 function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -34,6 +34,10 @@ function ChangePassword() {
     }
     if (formData.newPassword.includes(" ")) {
       newErrors.newPassword = "비밀번호에 공백을 포함할 수 없습니다.";
+      isValid = false;
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.newPassword)) {
+      newErrors.newPasswordpassword = "비밀번호에는 최소 1개의 특수문자가 포함되어야 합니다.";
       isValid = false;
     }
 
