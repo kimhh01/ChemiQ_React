@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PartnerInfo from "../PartnerShip/PartnerInfo";
-import TodayMission from "../TodayMisson";
+import TodayMission from "../TodayMisson/TodayMisson";
 import "./Home.css";
+import "../TodayMisson/TodaymissonState"
+import TodaymissionState from "../TodayMisson/TodaymissonState";
 
 function Home() {
   const navigate = useNavigate();
@@ -51,6 +53,7 @@ function Home() {
       {/* PartnerInfo에 홈 화면이므로 버튼 숨기기 */}
       <PartnerInfo hideUnlinkButton={true} />
       <TodayMission />
+      <TodaymissionState/>
     </div>
   );
 }

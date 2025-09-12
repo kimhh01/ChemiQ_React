@@ -7,7 +7,7 @@ import PartnerPage from "./Page/PartnerPage";
 import MyPage from "./Page/MyPage"
 import ChangePassword from "./Change/ChangePassword";
 import ChangeNickname from "./Change/ChangeNickname";
-import MyInfo from "./MyInfo";
+import MyInfo from "./PartnerShip/MyInfo";
 
 function App() {
   return (

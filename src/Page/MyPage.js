@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import MyInfo from "../MyInfo";
+import MyInfo from "../PartnerShip/MyInfo";
 
 function MyPage() {
 

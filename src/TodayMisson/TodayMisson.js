@@ -1,6 +1,6 @@
 // src/components/TodayMission.js
 import React, { useEffect, useState } from "react";
-import api from "./Api/api"; // api.js에서 엑세스 토큰이 포함된 axios 인스턴스
+import api from "../Api/api"; // api.js에서 엑세스 토큰이 포함된 axios 인스턴스
 
 const handleSubmmit = async () => {
 
@@ -43,8 +43,8 @@ function TodayMission() {
         <div>
           <p><strong>제목:</strong> {mission.title}</p>
           <p><strong>설명:</strong> {mission.description}</p>
-          <button type="submit" className="signup-btn" onClick={handleSubmmit(mission.missionId)}>
-            회원가입
+          <button type="submit" className="/" onClick={handleSubmmit(mission.missionId)}>
+            제출하기 이지만 대기
           </button>
         </div>
       ) : (

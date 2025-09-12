@@ -1,6 +1,6 @@
 // MyInfo.js
 import React, { useState, useEffect } from "react";
-import api from "./Api/api"; // api.js 인스턴스 불러오기
+import api from "../Api/api"; // api.js 인스턴스 불러오기
 
 function MyInfo() {
   const [info, setInfo] = useState(null);
