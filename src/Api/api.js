@@ -66,7 +66,7 @@ api.interceptors.response.use(
         console.error("리프레시 토큰도 만료됨 → 로그아웃 필요");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        // window.location.href = "/"; // 로그인 페이지로 이동
+        window.location.href = "/"; // 로그인 페이지로 이동
         return Promise.reject(refreshError);
       }
     }

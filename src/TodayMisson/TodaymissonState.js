@@ -1,16 +1,19 @@
-// TodayMission.js
 import React, { useEffect, useState } from "react";
-import api from "../Api/api"; // api.js 불러오기
+import api from "../Api/api";
+import EvaluateModal from "../EvaluateModal";
+import EvaluateViewModal from "../EvaluateViewModal";
 
 function TodaymissionState() {
   const [mission, setMission] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedSubmissionId, setSelectedSubmissionId] = useState(null); // 평가하기
+  const [viewSubmissionId, setViewSubmissionId] = useState(null); // 평가조회
 
   useEffect(() => {
     const fetchMission = async () => {
       try {
-        const res = await api.get("/timeline/today"); // 오늘의 미션 조회 API
+        const res = await api.get("/timeline/today");
         if (res.status === 200) {
           setMission(res.data);
           setError("");
@@ -55,6 +58,17 @@ function TodaymissionState() {
                 alt="내 제출 이미지"
                 style={{ width: "100px", borderRadius: "10px" }}
               />
+              {/* ✅ 내 제출 평가 조회 버튼 */}
+              {mission.mySubmission.score && (
+                <button
+                  onClick={() =>
+                    setViewSubmissionId(mission.mySubmission.submissionId)
+                  }
+                  style={{ marginTop: "10px" }}
+                >
+                  내 제출 평가 조회
+                </button>
+              )}
             </>
           ) : (
             <p style={{ color: "red" }}>아직 제출하지 않았습니다.</p>
@@ -73,11 +87,49 @@ function TodaymissionState() {
                 alt="파트너 제출 이미지"
                 style={{ width: "100px", borderRadius: "10px" }}
               />
+              {/* ✅ 평가하기 버튼 (파트너 제출 있을 때만) */}
+              <button
+                onClick={() =>
+                  setSelectedSubmissionId(
+                    mission.partnerSubmission.submissionId
+                  )
+                }
+                style={{ marginTop: "10px", marginRight: "10px" }}
+              >
+                평가하기
+              </button>
+              {/* ✅ 파트너 제출 평가 조회 버튼 */}
+              {mission.partnerSubmission.score && (
+                <button
+                  onClick={() =>
+                    setViewSubmissionId(mission.partnerSubmission.submissionId)
+                  }
+                  style={{ marginTop: "10px" }}
+                >
+                  파트너 제출 평가 조회
+                </button>
+              )}
             </>
           ) : (
             <p style={{ color: "red" }}>파트너가 아직 제출하지 않았습니다.</p>
           )}
         </div>
+      )}
+
+      {/* 평가 모달 */}
+      {selectedSubmissionId && (
+        <EvaluateModal
+          submissionId={selectedSubmissionId}
+          onClose={() => setSelectedSubmissionId(null)}
+        />
+      )}
+
+      {/* 평가 조회 모달 */}
+      {viewSubmissionId && (
+        <EvaluateViewModal
+          submissionId={viewSubmissionId}
+          onClose={() => setViewSubmissionId(null)}
+        />
       )}
     </div>
   );
