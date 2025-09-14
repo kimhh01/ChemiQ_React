@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../Api/api";
-import EvaluateModal from "../EvaluateModal";
-import EvaluateViewModal from "../EvaluateViewModal";
+import EvaluateModal from "../Evaluate/EvaluateModal";
+import EvaluateViewModal from "../Evaluate/EvaluateViewModal";
 
 function TodaymissionState() {
   const [mission, setMission] = useState(null);

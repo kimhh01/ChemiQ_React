@@ -1,7 +1,7 @@
 // EvaluateViewModal.js
 import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import api from "./Api/api";
+import api from "../Api/api";
 
 function EvaluateViewModal({ submissionId, onClose }) {
   const [evaluation, setEvaluation] = useState(null);

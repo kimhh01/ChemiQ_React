@@ -1,7 +1,7 @@
 // EvaluateModal.js
 import React, { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import api from "./Api/api";
+import api from "../Api/api";
 
 function EvaluateModal({ submissionId, onClose }) {
   const [score, setScore] = useState(0);
