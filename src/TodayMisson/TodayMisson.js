@@ -1,7 +1,8 @@
 // src/components/TodayMission.js
 import React, { useEffect, useState } from "react";
 import api from "../Api/api"; 
-import MissionSubmit from "../MissionSubmit"; // 미션 제출 모달 컴포넌트
+import MissionSubmit from "../Mission/MissionSubmit"; // 미션 제출 모달 컴포넌트
+import "./TodayMission.css";
 
 function TodayMission() {
   const [mission, setMission] = useState(null);
@@ -42,26 +43,27 @@ function TodayMission() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>오늘의 미션</h2>
-      {mission ? (
-        <div>
-          <p><strong>제목:</strong> {mission.title}</p>
-          <p><strong>설명:</strong> {mission.description}</p>
+    <div className="today-mission-container">
+      <div className="today-mission-card">
+        <h2>오늘의 미션</h2>
+        {mission ? (
+          <div>
+            <p><strong>제목:</strong> {mission.title}</p>
+            <p><strong>설명:</strong> {mission.description}</p>
 
-          {/* dailyMissionId는 보이지 않음 */}
-          <button
-            type="button"
-            onClick={() => setShowSubmitModal(true)}
-          >
-            제출하기
-          </button>
-        </div>
-      ) : (
-        <p>오늘의 미션이 없습니다.</p>
-      )}
+            <button
+              type="button"
+              className="today-mission-button"
+              onClick={() => setShowSubmitModal(true)}
+            >
+              제출하기
+            </button>
+          </div>
+        ) : (
+          <p>오늘의 미션이 없습니다.</p>
+        )}
+      </div>
 
-      {/* 제출 모달 */}
       {showSubmitModal && dailyMissionId && (
         <MissionSubmit
           dailyMissionId={dailyMissionId}

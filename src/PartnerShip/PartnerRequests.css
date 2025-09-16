@@ -1,0 +1,59 @@
+.partner-requests {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.partner-requests h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* 폼 정렬 */
+.partner-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 입력창 */
+.partner-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.partner-input:focus {
+  border-color: #4cafef;
+  box-shadow: 0 0 4px rgba(76, 175, 239, 0.5);
+  outline: none;
+}
+
+/* 버튼 */
+.partner-submit {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #4cafef, #2196f3);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.partner-submit:hover {
+  background: linear-gradient(135deg, #3a9ad9, #1976d2);
+  transform: scale(1.05);
+}
+
+/* 메시지 */
+.partner-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}

@@ -5,6 +5,7 @@ import TodayMission from "../TodayMisson/TodayMisson";
 import "./Home.css";
 import "../TodayMisson/TodaymissonState"
 import TodaymissionState from "../TodayMisson/TodaymissonState";
+import MissionHistory from "../Mission/MissionHistory";
 
 function Home() {
   const navigate = useNavigate();
@@ -49,11 +50,14 @@ function Home() {
           <button onClick={handleLogout}>로그아웃</button>
         </div>
       </div>
-
+      <div className="home-body">
+        <PartnerInfo hideUnlinkButton={true} />
+        <TodayMission />
+      </div>
+    
       {/* PartnerInfo에 홈 화면이므로 버튼 숨기기 */}
-      <PartnerInfo hideUnlinkButton={true} />
-      <TodayMission />
       <TodaymissionState/>
+      <MissionHistory/>
     </div>
   );
 }

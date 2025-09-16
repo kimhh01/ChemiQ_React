@@ -1,0 +1,61 @@
+/* 메인 카드 */
+.todaymission-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+/* 제목 */
+.todaymission-card h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #222;
+  text-align: center;
+}
+
+/* 서브 카드 (내 제출, 파트너 제출) */
+.submission-card {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.submission-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #444;
+}
+
+/* 제출 이미지 */
+.submission-image {
+  width: 120px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+}
+
+/* 버튼 스타일 */
+.action-button {
+  margin-top: 10px;
+  margin-right: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #4cafef, #2196f3);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+  background: linear-gradient(135deg, #3a9ad9, #1976d2);
+  transform: scale(1.05);
+}

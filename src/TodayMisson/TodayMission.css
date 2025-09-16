@@ -1,0 +1,53 @@
+/* 상위 컨테이너: PartnerInfo 오른쪽에 배치 */
+.today-mission-container {
+  display: flex;
+  flex-direction: column;  /* 카드 안에서 위→아래 정렬 */
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 20px;       /* 파트너 카드와 간격 */
+}
+
+/* 오늘의 미션 카드뷰 */
+.today-mission-card {
+  width: 380px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-family: "Arial", sans-serif;
+  text-align: left;        /* 기본 텍스트는 왼쪽 정렬 */
+}
+
+.today-mission-card h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #222;
+  text-align: center;      /* 제목만 중앙 정렬 */
+}
+
+.today-mission-card p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* 제출하기 버튼 */
+.today-mission-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #4cafef, #2196f3);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;      /* ✅ 둥근 버튼 */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.today-mission-button:hover {
+  background: linear-gradient(135deg, #3a9ad9, #1976d2);
+  transform: scale(1.05);   /* 살짝 커지는 효과 */
+}

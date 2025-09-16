@@ -1,0 +1,67 @@
+/* 전체 컨테이너: 왼쪽 위 배치 */
+.partner-container {
+  display: flex;
+  justify-content: flex-start;  /* 왼쪽 정렬 */
+  align-items: flex-start;      /* 위쪽 정렬 */
+  margin: 20px;                 /* 전체 여백 */
+}
+
+/* 큰 카드뷰 */
+.partner-card {
+  width: 400px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+/* 내부 작은 카드뷰 */
+.partner-subcard {
+  margin-top: 15px;
+  padding: 20px;
+  background: #dcdcdc;
+  border-radius: 12px;
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.1);
+}
+
+.partner-profile {
+  width: 160px;
+  height: 120px;
+  border-radius: 8%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.partner-info {
+  margin-bottom: 10px;
+}
+
+.partner-info p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.partner-button {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.partner-button:hover {
+  background-color: #d9363e;
+}
+
+.partner-message {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007bff;
+}

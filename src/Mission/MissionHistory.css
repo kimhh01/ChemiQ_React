@@ -1,0 +1,89 @@
+.mission-history-container {
+  max-width: 700px;
+  margin: 20px auto;
+  font-family: "Arial", sans-serif;
+}
+
+.mission-history-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mission-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.mission-card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.mission-date {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.submission-card {
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.my-submission {
+  border-left: 4px solid #2196f3; /* 파란 포인트 */
+}
+
+.partner-submission {
+  border-left: 4px solid #9c27b0; /* 보라 포인트 */
+}
+
+.submission-card h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #444;
+}
+
+.submission-image {
+  width: 120px;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+}
+
+.no-submission {
+  color: red;
+  font-size: 14px;
+}
+
+/* 페이지네이션 */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.page-button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-button:hover {
+  background-color: #ddd;
+}
+
+.page-button.active {
+  background-color: #4caf50;
+  color: white;
+}

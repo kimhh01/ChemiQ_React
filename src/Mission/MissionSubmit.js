@@ -1,12 +1,13 @@
 // src/Mission/MissionSubmit.js
 import React, { useState } from "react";
-import api from "./Api/api"; // ✅ 경로 주의 (src/Api/api.js 안에 위치해야 함)
+import api from "../Api/api"; // ✅ 경로 주의 (src/Api/api.js 안에 위치해야 함)
 
 function MissionSubmit({ dailyMissionId, onClose }) {
   const [file, setFile] = useState(null);
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false); // ✅ 성공 여부 상태 추가
 
   // 파일 선택 핸들러
   const handleFileChange = (e) => {
@@ -53,6 +54,7 @@ function MissionSubmit({ dailyMissionId, onClose }) {
 
         if (completeRes.status === 200) {
           setMessage("✅ 미션이 성공적으로 제출되었습니다!");
+          setSuccess(true); // ✅ 성공 상태 true
         }
       }
     } catch (err) {
@@ -115,38 +117,50 @@ function MissionSubmit({ dailyMissionId, onClose }) {
       >
         <h3>미션 제출</h3>
 
-        {/* 파일 선택 */}
-        <input type="file" accept="image/*" onChange={handleFileChange} />
-        <br />
+        {/* 성공 시에는 입력/버튼 대신 메시지와 확인 버튼만 보여줌 */}
+        {success ? (
+          <>
+            <p style={{ marginTop: "10px", color: "green" }}>{message}</p>
+            <button onClick={onClose} style={{ marginTop: "15px" }}>
+              확인
+            </button>
+          </>
+        ) : (
+          <>
+            {/* 파일 선택 */}
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+            <br />
 
-        {/* 내용 입력 */}
-        <textarea
-          placeholder="내용을 입력하세요"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          style={{ width: "100%", height: "80px", marginTop: "10px" }}
-        />
+            {/* 내용 입력 */}
+            <textarea
+              placeholder="내용을 입력하세요"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              style={{ width: "100%", height: "80px", marginTop: "10px" }}
+            />
 
-        {/* 버튼 */}
-        <div style={{ marginTop: "15px" }}>
-          <button onClick={handleSubmit} disabled={loading}>
-            {loading ? "제출 중..." : "제출하기"}
-          </button>
-          <button onClick={onClose} style={{ marginLeft: "10px" }}>
-            닫기
-          </button>
-        </div>
+            {/* 버튼 */}
+            <div style={{ marginTop: "15px" }}>
+              <button onClick={handleSubmit} disabled={loading}>
+                {loading ? "제출 중..." : "제출하기"}
+              </button>
+              <button onClick={onClose} style={{ marginLeft: "10px" }}>
+                닫기
+              </button>
+            </div>
 
-        {/* 메시지 */}
-        {message && (
-          <p
-            style={{
-              marginTop: "10px",
-              color: message.includes("✅") ? "green" : "red",
-            }}
-          >
-            {message}
-          </p>
+            {/* 메시지 */}
+            {message && (
+              <p
+                style={{
+                  marginTop: "10px",
+                  color: message.includes("✅") ? "green" : "red",
+                }}
+              >
+                {message}
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>

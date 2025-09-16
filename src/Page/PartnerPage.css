@@ -1,0 +1,24 @@
+/* 네비게이션 버튼 영역 */
+.partner-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* 버튼 스타일 */
+.partner-nav-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #4cafef, #2196f3);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.partner-nav-button:hover {
+  background: linear-gradient(135deg, #3a9ad9, #1976d2);
+  transform: scale(1.05);
+}
