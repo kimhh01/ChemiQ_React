@@ -19,14 +19,23 @@ function MyPage() {
      
     return (
         <div className="my-page">
-        <h3>마이페이지</h3>
-        <MyInfo/>
-        <button onClick={() => setShowUpload(true)}>프로필 사진 수정</button>
-        <button onClick={goToPasswordChange}> 비밀번호 변경 </button>
-        <button onClick={goToNicknameChange}> 닉네임 변경</button>
+  <div className="my-page-box">
+    <h3>마이페이지</h3>
+    <MyInfo className="my-info" />
+    <button onClick={() => setShowUpload(true)}>프로필 사진 수정</button>
+    <button onClick={goToPasswordChange}>비밀번호 변경</button>
+    <button onClick={goToNicknameChange}>닉네임 변경</button>
+  </div>
 
-        {showUpload && <ProfileImageUpload onClose={() => setShowUpload(false)} />}
-        </div>
+  {showUpload && (
+    <div className="profile-upload-modal">
+      <div className="profile-upload-content">
+        <ProfileImageUpload onClose={() => setShowUpload(false)} />
+      </div>
+    </div>
+  )}
+</div>
+
     )
 }
 export default MyPage;

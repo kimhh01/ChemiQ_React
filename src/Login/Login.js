@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import "../App.css";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate(); 
@@ -12,6 +12,7 @@ function Login() {
   });
 
   const [error, setError] = useState(""); // 로그인 실패 메시지
+  const [loading] = useState(false);
 
   // 입력값 변경 핸들러
   const handleChange = (e) => {
@@ -67,37 +68,60 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-page">
       <div className="login-box">
-        <h1 className="title">ChemiQ</h1>
-        <p className="subtitle">개발자는 당근을 흔들고 있어요!</p>
+        {/* 헤더 */}
+        <div className="login-header">
+          <h2>로그인</h2>
+          <p>ChemiQ에 다시 오신 걸 환영합니다 🎉</p>
+        </div>
 
-        <input
-          type="text"
-          name="memberId"
-          placeholder="아이디"
-          className="input-field"
-          value={formData.memberId}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="비밀번호"
-          className="input-field"
-          value={formData.password}
-          onChange={handleChange}
-        />
+        {/* 에러 메시지 */}
+        {error && <div className="error-message">{error}</div>}
 
-        {error && <p className="error-text">{error}</p>}
+        {/* 입력폼 */}
+        <div className="input-group">
+          <label htmlFor="memberId">아이디</label>
+          <input
+            type="text"
+            id="memberId"
+            name="memberId"
+            className="login-input"
+            placeholder="아이디를 입력하세요"
+            value={formData.memberId}
+            onChange={handleChange}
+            disabled={loading}
+          />
+        </div>
 
-        <button className="btn login-btn" onClick={handleLogin}>
-          로그인
+        <div className="input-group">
+          <label htmlFor="password">비밀번호</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className="login-input"
+            placeholder="비밀번호를 입력하세요"
+            value={formData.password}
+            onChange={handleChange}
+            disabled={loading}
+          />
+        </div>
+
+        {/* 로그인 버튼 */}
+        <button
+          className="login-btn"
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          {loading ? "로그인 중..." : "로그인"}
         </button>
 
-        <button className="btn signup-btn" onClick={handleSignup}>
-          회원가입
-        </button>
+        {/* 회원가입 안내 */}
+        <div className="signup-section">
+          <p>아직 계정이 없으신가요?</p>
+          <a href="/signup">회원가입 하기</a>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,161 @@
+/* variables.css */
+:root {
+  --primary-color: #4f46e5; /* 보라색 */
+  --secondary-color: #6366f1;
+  --background-color: #f3f4f6;
+  --input-bg: rgba(255, 255, 255, 0.15);
+  --input-border: rgba(255, 255, 255, 0.3);
+  --error-color: #ef4444;
+  --text-color: #ffffff; /* 글래스모피즘 → 흰색 텍스트가 어울림 */
+  --placeholder-color: rgba(255, 255, 255, 0.7);
+  --button-hover: #4338ca;
+}
+
+/* Login.css */
+@import '../variables.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 로그인 전체 레이아웃 */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* 로그인 박스 (글래스모피즘 적용) */
+.login-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  color: var(--text-color);
+}
+
+/* 헤더 */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.login-header p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+/* 에러 메시지 */
+.error-message {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--error-color);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* 입력 필드 */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-size: 1rem;
+  color: #ffffff;
+  transition: border 0.2s, background 0.2s;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.login-input::placeholder {
+  color: var(--placeholder-color);
+}
+
+/* 버튼 */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* 회원가입 안내 */
+.signup-section {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.signup-section a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-section a:hover {
+  text-decoration: underline;
+}
