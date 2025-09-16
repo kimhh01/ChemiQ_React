@@ -20,8 +20,8 @@ function TodayMission() {
         setMission(response.data);
 
         // ✅ dailyMissionId는 따로 저장
-        if (response.data?.missionId) {
-          setDailyMissionId(response.data.missionId);
+        if (response.data?.dailyMissionId) {
+          setDailyMissionId(response.data.dailyMissionId);
         }
       } catch (err) {
         console.error("오늘의 미션 조회 에러:", err.response || err);

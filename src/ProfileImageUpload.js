@@ -23,7 +23,7 @@ function ProfileImageUpload({ onClose }) {
       setLoading(true);
 
       // 1️⃣ 서버에 filename 전달 → presignedUrl, fileKey 받기
-      const presignRes = await api.post("/submissions/presigned-url", {
+      const presignRes = await api.post("/members/me/profile-image/presigned-url", {
         filename: file.name,
       });
 
@@ -40,7 +40,7 @@ function ProfileImageUpload({ onClose }) {
         });
 
         // 3️⃣ 업로드 완료 알림 (fileKey 전달)
-        const completeRes = await api.post("//members/me/profile-image", {
+        const completeRes = await api.post("/members/me/profile-image", {
           fileKey,
         });
 
