@@ -1,18 +1,23 @@
-// MyInfo.js
+// src/MyInfo.js
 import React, { useState, useEffect } from "react";
-import api from "../Api/api"; // api.js 인스턴스 불러오기
+import api from "../Api/api";
 
-function MyInfo() {
+function MyInfo({ onLoad }) { // ✅ props 추가
   const [info, setInfo] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const res = await api.get("/members/me/info"); // 내 정보 조회 요청
+        const res = await api.get("/members/me/info");
         if (res.status === 200) {
           setInfo(res.data);
           setError("");
+
+          // ✅ Home.js로 데이터 전달
+          if (onLoad) {
+            onLoad(res.data.myInfo);
+          }
         }
       } catch (err) {
         if (err.response && err.response.status === 404) {
@@ -23,8 +28,8 @@ function MyInfo() {
       }
     };
 
-    fetchInfo(); // 컴포넌트가 마운트될 때 호출
-  }, []); // 빈 배열 → 한 번만 실행
+    fetchInfo();
+  }, [onLoad]);
 
   return (
     <div style={{ margin: "20px" }}>

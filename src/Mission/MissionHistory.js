@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../Api/api";
-import "./MissionHistory.css"; // ✅ CSS 추가
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import "./MissionHistory.css";
 
 // 날짜 변환 함수
 const formatDate = (dateString) => {
@@ -13,6 +15,9 @@ const formatDate = (dateString) => {
   ).padStart(2, "0")}시 ${String(date.getMinutes()).padStart(2, "0")}분`;
 };
 
+// ✅ 캐시 만료 시간 
+const CACHE_TTL = 1000 * 60 * 1;
+
 function MissionHistory() {
   const [missions, setMissions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,14 +28,38 @@ function MissionHistory() {
 
   useEffect(() => {
     const fetchMissions = async () => {
+      const cacheKey = `missions_page_${page}`;
+      const cachedData = localStorage.getItem(cacheKey);
+      const now = Date.now();
+
+      // ✅ 캐시 확인
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        if (now - timestamp < CACHE_TTL) {
+          setMissions(data.content);
+          setTotalPages(data.totalPages);
+          setLoading(false);
+          return; // 캐시 사용 → 네트워크 요청 X
+        }
+      }
+
+      // ✅ API 호출
       try {
         setLoading(true);
-        const res = await api.get("/timeline", {
-          params: { page, size }, // ✅ 수정: params로 전달
-        });
+        const res = await api.get("/timeline", { params: { page, size } });
         if (res.status === 200) {
           setMissions(res.data.content);
           setTotalPages(res.data.totalPages);
+
+          // ✅ localStorage에 캐시 저장
+          localStorage.setItem(
+            cacheKey,
+            JSON.stringify({
+              data: res.data,
+              timestamp: now,
+            })
+          );
+
           setError("");
         }
       } catch (err) {
@@ -64,10 +93,11 @@ function MissionHistory() {
                   <p>내용: {mission.mySubmission.content}</p>
                   <p>점수: {mission.mySubmission.score}</p>
                   <p>제출일: {formatDate(mission.mySubmission.createdAt)}</p>
-                  <img
+                  <LazyLoadImage
                     src={mission.mySubmission.imageUrl}
                     alt="내 제출 이미지"
                     className="submission-image"
+                    effect="blur"
                   />
                 </>
               ) : (
@@ -83,10 +113,11 @@ function MissionHistory() {
                   <p>내용: {mission.partnerSubmission.content}</p>
                   <p>점수: {mission.partnerSubmission.score}</p>
                   <p>제출일: {formatDate(mission.partnerSubmission.createdAt)}</p>
-                  <img
+                  <LazyLoadImage
                     src={mission.partnerSubmission.imageUrl}
                     alt="파트너 제출 이미지"
                     className="submission-image"
+                    effect="blur"
                   />
                 </>
               ) : (
@@ -108,6 +139,7 @@ function MissionHistory() {
             key={index}
             onClick={() => setPage(index)}
             className={`page-button ${page === index ? "active" : ""}`}
+            disabled={page === index}
           >
             {index + 1}
           </button>
